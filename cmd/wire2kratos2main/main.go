@@ -76,7 +76,7 @@ func main() {
 		}
 		done.Done(os.WriteFile(path, []byte(newCode), 0644))
 	}
-	zaplog.LOG.Info("success")
+	zaplog.LOG.Info("done")
 }
 
 func deriveKratosProjectWireGenPath() string {
