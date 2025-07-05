@@ -26,6 +26,7 @@ func main() {
 	var debug bool
 	flag.StringVar(&path, "path", "", "absolute_path. example: /Users/admin/xx/xx/xx/project/cmd/project/wire_gen.go")
 	flag.StringVar(&name, "name", "", "relative_path. example: cmd/project/wire_gen.go")
+	// 这里或许是过度设计了因为项目的名字就是和 kratos 相关的，再设置 framework 意义也不大的
 	flag.StringVar(&framework, "framework", "", "framework name. example: kratos")
 	flag.BoolVar(&debug, "debug", false, "debug mode")
 	flag.Parse()
