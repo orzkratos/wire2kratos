@@ -6,7 +6,7 @@ require (
 	github.com/yyle88/done v1.0.26
 	github.com/yyle88/erero v1.0.23
 	github.com/yyle88/must v0.0.25
-	github.com/yyle88/osexec v0.0.31
+	github.com/yyle88/osexec v0.0.32
 	github.com/yyle88/osexistpath v0.0.17
 	github.com/yyle88/runpath v1.0.23
 	github.com/yyle88/zaplog v0.0.26

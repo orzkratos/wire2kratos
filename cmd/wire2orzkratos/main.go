@@ -20,8 +20,8 @@ import (
 func main() {
 	zaplog.LOG.Info("main", zap.String("path", runpath.PARENT.Path()))
 
-	var path string
-	var name string
+	var path string // 绝对路径
+	var name string // 相对路径
 	var framework string
 	var debug bool
 	flag.StringVar(&path, "path", "", "absolute_path. example: /Users/admin/xx/xx/xx/project/cmd/project/wire_gen.go")
@@ -40,7 +40,7 @@ func main() {
 			switch framework {
 			case "kratos":
 				path = deriveKratosProjectWireGenPath()
-			default:
+			default: //其他的还不支持，因为暂不知道其它框架的固定 wire_gen.go 的位置
 				panic(erero.New("wrong param"))
 			}
 		default:
@@ -49,6 +49,11 @@ func main() {
 	}
 	zaplog.LOG.Info("derive-wire_gen-path", zap.String("path", path))
 
+	replaceWireCommandLine(path, debug)
+	zaplog.LOG.Info("done")
+}
+
+func replaceWireCommandLine(path string, debug bool) {
 	osmustexist.MustFile(must.Nice(path))
 	content := string(done.VAE(os.ReadFile(path)).Nice())
 	if debug {
@@ -75,9 +80,8 @@ func main() {
 		if debug {
 			zaplog.SUG.Info(newCode)
 		}
-		done.Done(os.WriteFile(path, []byte(newCode), 0644))
+		must.Done(os.WriteFile(path, []byte(newCode), 0644))
 	}
-	zaplog.LOG.Info("done")
 }
 
 func deriveKratosProjectWireGenPath() string {
